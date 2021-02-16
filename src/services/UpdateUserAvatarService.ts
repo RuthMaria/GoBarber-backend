@@ -16,11 +16,11 @@ class UpdateUserAvatarService {
 
     const user = await usersRepository.findOne(user_id);
 
-    if (!user) {
+    if ( !user ) {
       throw new Error('Only authenticated user can change avatar');
     }
 
-    if (user.avatar) {
+    if ( user.avatar ) {
       const userAvatarFilePath = path.join(uploadConfig.directory, user.avatar)
 
       const userAvatarFileExists = await fs.promises.stat(userAvatarFilePath);
@@ -31,8 +31,6 @@ class UpdateUserAvatarService {
     }
 
     user.avatar = avatarFileName;
-
-
 
     await usersRepository.save(user);
 

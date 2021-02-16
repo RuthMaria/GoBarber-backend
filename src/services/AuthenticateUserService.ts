@@ -38,6 +38,7 @@ class AuthenticateUserService{
             subject: user.id,
             expiresIn: expiresIn
         })
+        
         return {
             user,
             token

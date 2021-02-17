@@ -48,6 +48,7 @@ Services:
   * JWT
   * TypeORM
   * Bcryptjs
+  * Multer
 
 <a id="run"></a><br>
 

@@ -54,11 +54,40 @@ Services:
 
 ## 🚀 How to run the API
 
+<br>
+
+### :small_orange_diamond: Requirements
+
+* [NodeJS in its LTS version](https://nodejs.org/en/download/)
+* [Visual Studio Code](https://code.visualstudio.com/download)
+* [Dbeaver](https://dbeaver.io/download/)
+* [Docker](https://www.docker.com/get-started)
+* [Docker installation guide](https://www.notion.so/Instalando-Docker-6290d9994b0b4555a153576a1d97bee2)
+* [yarn](https://classic.yarnpkg.com/en/docs/install/#windows-stable)
+
+<br>
+
+### :small_orange_diamond: Commands
 - Clone this repository
 
 ```
 git clone https://github.com/RuthMaria/GoBarber-backend.git
 ```
+
+- Install the postgres image on your docker container using port 5432 or another port
+
+```
+docker run --name gostack_postgres -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres 
+```
+
+- Start postgres image
+```
+docker start gostack_postgres
+```
+
+- Open the Dbeaver and create a new connection with Postgres. Change the port to 5432 and in the password, you type "docker", as you have defined above when create a postgres image on docker.
+
+- After that, create a new database in yout postgres connection inside Dbeaver. Write "gostack_gobarber" in the database name. 
 
 - Install dependencies
 
@@ -66,16 +95,15 @@ git clone https://github.com/RuthMaria/GoBarber-backend.git
 yarn 
 ```
 
+- Create the migrations
+```
+yarn typeorm migration:run
+```
+
 - Run the API
 
 ```
 yarn dev:server
-```
-
-- Run the tests
-
-```
-yarn test
 ```
 
 <br>

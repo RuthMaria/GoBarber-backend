@@ -1,8 +1,8 @@
-import Appointment from '../models/Appointments'
+import Appointment from '../infra/typeorm/entities/Appointments'
 import {startOfHour} from 'date-fns' //  startOdHour pega uma data e zera os segundos e minutos.
 import AppointmentRepository from '../repositories/AppointmentsRepository'
 import {getCustomRepository} from 'typeorm'
-import AppError from '../errors/AppError'
+import AppError from '@shared/errors/AppError'
 
 interface Request {
     provider_id: string

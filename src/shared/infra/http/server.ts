@@ -2,10 +2,10 @@ import 'reflect-metadata'
 import express, { Request, Response, NextFunction } from 'express'
 import 'express-async-errors' // necessário para os erros da aplicação cair no middleware de erros
 import routes from './routes'
-import './database'
+import '@shared/infra/typeorm'
 import cors from 'cors'
-import uploadConfig from './config/upload'
-import AppError from './errors/AppError'
+import uploadConfig from '@config/upload'
+import AppError from '@shared/errors/AppError'
 
 const app = express()
 app.use(cors())

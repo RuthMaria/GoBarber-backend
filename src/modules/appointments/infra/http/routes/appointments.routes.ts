@@ -1,9 +1,9 @@
 import { request, Router } from 'express'
 import {parseISO} from 'date-fns' //ParseISO transforma uma string em formato Date().
-import AppointmentsRepository from '../repositories/AppointmentsRepository'
-import CreateAppointmentService from '../services/CreateAppointmentService'
+import AppointmentsRepository from '@modules/appointments/repositories/AppointmentsRepository'
+import CreateAppointmentService from '@modules/appointments/services/CreateAppointmentService'
 import { getCustomRepository } from 'typeorm'
-import ensureAuthenticated from '../middlewares/ensureAuthenticated'
+import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated'
 
 const appointmentsRouter = Router()
 
@@ -19,7 +19,7 @@ appointmentsRouter.get('/', async (request, response) => {
 
 
 appointmentsRouter.post('/', async (request, response) => {
-   
+
     const { provider_id, date } = request.body
 
     const parsedDate = parseISO(date)
@@ -32,7 +32,7 @@ appointmentsRouter.post('/', async (request, response) => {
     })
 
     return response.json(appointment)
-   
+
 })
 
 export default appointmentsRouter

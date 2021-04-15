@@ -20,6 +20,7 @@
     ],
     "rules": {
         "no-use-before-define": "off",
+        "no-useless-constructor": "off",
         "@typescript-eslint/no-use-before-define": [
             "error"
         ],
@@ -33,6 +34,14 @@
             "ignorePackages",
             {
               "ts": "never"
+            }
+        ],
+        "@typescript-eslint/naming-convention": [
+        "error",
+            {
+                "selector": "interface",
+                "prefix": ["I"],
+                "format": ["PascalCase"]
             }
         ],
         "prettier/prettier": "error",

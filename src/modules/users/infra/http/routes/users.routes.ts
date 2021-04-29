@@ -4,6 +4,7 @@ import ensureAuthenticated from '../middlewares/ensureAuthenticated'
 import uploadConfig from '@config/upload'
 import multer from 'multer';
 import UpdateUserAvatarService from '@modules/users/services/UpdateUserAvatarService'
+import UsersRepository from '@modules/users/infra/typeorm/repositories/UsersRepository'
 
 const usersRouter = Router()
 const upload = multer(uploadConfig)
@@ -12,7 +13,8 @@ usersRouter.post('/', async (request, response) => {
 
     const { name, email, password } = request.body
 
-    const createUser = new CreateUserService()
+    const userRepository = new UsersRepository()
+    const createUser = new CreateUserService(userRepository)
 
     const user = await createUser.execute({
         name,
@@ -35,7 +37,8 @@ usersRouter.post('/', async (request, response) => {
 // patch é semelhante ao PUT, mas é usando quando se que alterar poucos campos.
 usersRouter.patch('/avatar', ensureAuthenticated, upload.single('avatar'), async (request, response) => {
 
-   const updateUserAvatar = new UpdateUserAvatarService()
+   const userRepository = new UsersRepository()
+   const updateUserAvatar = new UpdateUserAvatarService(userRepository)
 
    const user = await updateUserAvatar.execute({
         user_id: request.user.id,

@@ -1,10 +1,10 @@
 import { response, Router } from 'express'
+import { container } from 'tsyringe';
 import CreateUserService from '@modules/users/services/CreateUserService'
 import ensureAuthenticated from '../middlewares/ensureAuthenticated'
 import uploadConfig from '@config/upload'
 import multer from 'multer';
 import UpdateUserAvatarService from '@modules/users/services/UpdateUserAvatarService'
-import UsersRepository from '@modules/users/infra/typeorm/repositories/UsersRepository'
 
 const usersRouter = Router()
 const upload = multer(uploadConfig)
@@ -13,8 +13,7 @@ usersRouter.post('/', async (request, response) => {
 
     const { name, email, password } = request.body
 
-    const userRepository = new UsersRepository()
-    const createUser = new CreateUserService(userRepository)
+    const createUser = container.resolve(CreateUserService)
 
     const user = await createUser.execute({
         name,
@@ -37,8 +36,7 @@ usersRouter.post('/', async (request, response) => {
 // patch é semelhante ao PUT, mas é usando quando se que alterar poucos campos.
 usersRouter.patch('/avatar', ensureAuthenticated, upload.single('avatar'), async (request, response) => {
 
-   const userRepository = new UsersRepository()
-   const updateUserAvatar = new UpdateUserAvatarService(userRepository)
+   const updateUserAvatar = container.resolve(UpdateUserAvatarService)
 
    const user = await updateUserAvatar.execute({
         user_id: request.user.id,

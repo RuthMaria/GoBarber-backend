@@ -4,6 +4,7 @@ import { sign } from 'jsonwebtoken'
 import authConfig from '@config/auth'
 import AppError from '@shared/errors/AppError'
 import IUsersRepository from '../repositories/IUsersRepository'
+import {inject, injectable} from 'tsyringe'
 
 interface IRequest{
     email: string
@@ -15,8 +16,13 @@ interface IResponse{
     token: string
 }
 
+@injectable()
 class AuthenticateUserService{
-    constructor(private usersRepository: IUsersRepository){}
+
+    constructor(
+        @inject('UsersRepository')
+        private usersRepository: IUsersRepository
+    ){}
 
     public async execute({ email, password }: IRequest): Promise<IResponse> {
 

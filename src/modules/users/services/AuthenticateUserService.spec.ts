@@ -62,4 +62,18 @@ describe("AuthenticateUser", () => {
             })
         ).rejects.toBeInstanceOf(AppError)
     })
+
+    it("should not be able to authenticate with non existing user", async () => {
+        const fakeUsersRepository = new FakeUsersRepository()
+        const fakeHashProvider = new FakeHashProvider()
+
+        const authenticateUser = new AuthenticateUserService(fakeUsersRepository, fakeHashProvider)
+
+        expect(
+            authenticateUser.execute({
+                email: 'ruthmariia01@gmail.com',
+                password: '123456'
+            })
+        ).rejects.toBeInstanceOf(AppError)
+    })
 })

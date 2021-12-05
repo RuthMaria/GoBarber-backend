@@ -29,6 +29,8 @@ Services:
 
 -   Create user
 -   Read user
+-   Reset password
+-   Forgot password
 -   Create session user
 -   Create appointment
 -   Read appointements
@@ -89,7 +91,7 @@ docker start gostack_postgres
 
 -   Open the Dbeaver and create a new connection with Postgres. Change the port to 5432 and in the password, you type "docker", as you have defined above when create a postgres image on docker.
 
--   After that, create a new database in yout postgres connection inside Dbeaver. Write "gostack_gobarber" in the database name.
+-   After that, create a new database in your postgres connection inside Dbeaver. Write "gostack_gobarber" in the database name.
 
 -   Install dependencies
 

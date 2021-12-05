@@ -41,16 +41,17 @@ Services:
 
 ## ⚒️ Technologies Used
 
--   Node.js
--   TypeScript
--   Express
--   Docker
--   Postgres
 -   JWT
--   TypeORM
--   Bcryptjs
--   Multer
 -   Jest
+-   Multer
+-   Docker
+-   Node.js
+-   Express
+-   TypeORM
+-   Postgres
+-   Bcryptjs
+-   Ethereal
+-   TypeScript
 
 <a id="run"></a><br>
 
